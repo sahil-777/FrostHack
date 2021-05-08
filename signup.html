@@ -10,18 +10,25 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="./assets/css/vendor.min.css">
     <link rel="stylesheet" href="./assets/vendor/icon-set/style.css">
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="./assets/css/theme.min.css">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
     <!-- Firebase Libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
     <!--Firebase Config-->
     <Script src="./assets/firebase/auth.js"></Script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.0/dist/sweetalert2.all.min.js"></script>
+ 
   </head>
 
   <body class="footer-offset has-navbar-vertical-aside navbar-vertical-aside-show-xl">
@@ -71,7 +78,7 @@
           <div class="navbar-brand-wrapper justify-content-between">
             <!-- Logo -->
               <a class="navbar-brand" href="./index.html">
-                <img class="navbar-brand-logo" src="./assets/img/logo.png" alt="Logo">
+                <img class="navbar-brand-logo" src="./assets/img/book-logo.png" alt="Logo">
                 <img class="navbar-brand-logo-mini" src="./assets/img/favicon.png" alt="Logo">
               </a>
             <!-- End Logo -->
@@ -89,7 +96,7 @@
               <!-- Dashboards -->
               <li class="nav-item">
                 <a class="js-nav-tooltip-link nav-link" href="./assets/signup.html" title="Dashboard" data-placement="left">
-                  <i class="tio-home-vs-1-outlined nav-icon"></i>
+                  <i class="fa fa-sign-in" aria-hidden="true" style="margin-right: 6px;"></i>
                   <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">SignUp</span>
                 </a>
               </li>
@@ -105,7 +112,7 @@
 
               <li class="nav-item">
                 <a class="js-nav-tooltip-link nav-link " href="./auth/login.html" title="Sales Report" data-placement="left">
-                  <i class="tio-shop-outlined nav-icon"></i>
+                  <i class="fa fa-sign-out" aria-hidden="true" style="margin-right: 6px;"></i>
                   <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Login</span>
                 </a>
               </li>
@@ -145,24 +152,12 @@
                 </a>
               </li>
 
-              <li class="step-item" onclick="checkpass()">
-                <a class="step-content-wrapper" href="javascript:;"
-                    data-hs-step-form-next-options='{
-                    "targetSelector": "#addUserStepBillingAddress"
-                  }'>
-                  <span class="step-icon step-icon-soft-dark">2</span>
-                  <div class="step-content">
-                    <span class="step-title">Other Details</span>
-                  </div>
-                </a>
-              </li>
-
               <li class="step-item" onclick="confirmpage(),checkpass()">
                 <a class="step-content-wrapper" href="javascript:;"
                     data-hs-step-form-next-options='{
                     "targetSelector": "#addUserStepConfirmation"
                   }'>
-                  <span class="step-icon step-icon-soft-dark">3</span>
+                  <span class="step-icon step-icon-soft-dark">2</span>
                   <div class="step-content">
                     <span class="step-title">Confirmation</span>
                   </div>
@@ -203,48 +198,17 @@
                   <div class="row form-group">
                     <label class="col-sm-3 col-form-label input-label">Confirm Password</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="confirmPassword" placeholder="Re-enter password">
+                      <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password">
+                    </div>
+                  </div>
+
+                  <div class="row form-group">
+                    <label class="col-sm-3 col-form-label input-label" for="birthday">Birthdate:</label>
+                    <div class="col-sm-9">
+                      <input type="date" id="birthdate" name="birthdate" class="form-control" >
                     </div>
                   </div>
                 
-                  <div class="row form-group">
-                    <label class="col-sm-3 col-form-label input-label">Phone <span class="input-label-secondary">(Optional)</span></label>
-
-                    <div class="col-sm-9">
-                      <div class="input-group input-group-sm-down-break align-items-center">
-                        <input type="text" class="js-masked-input form-control" name="phone" id="phone" placeholder="+x(xxx)xxx-xx-xx">
-                        <div class="input-group-append">
-                          <div class="select2-custom">
-                            <select class="js-select2-custom custom-select" size="1" style="opacity: 0;" name="phoneSelect"
-                                  data-hs-select2-options='{
-                                    "minimumResultsForSearch": "Infinity",
-                                    "dropdownAutoWidth": true,
-                                    "width": "6rem"
-                                  }'>
-                              <option value="Mobile" selected>Mobile</option>
-                              <option value="Home">Home</option>
-                              <option value="Work">Work</option>
-                              <option value="Fax">Fax</option>
-                              <option value="Direct">Direct</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row form-group">
-                    <label for="storeName" class="col-sm-3 col-form-label input-label">Store Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="store" id="storeName" placeholder="Enter the Store name">
-                    </div>
-                  </div>
-
-                  <div class="row form-group">
-                    <label for="companyLabel" class="col-sm-3 col-form-label input-label">Company Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="company" id="companyName" placeholder="Enter the Company name">
-                    </div>
                   </div>
 
                 </div>
@@ -252,82 +216,16 @@
 
                 <!-- Footer -->
                 <div class="card-footer d-flex justify-content-end align-items-center">
-                  <button type="button" class="btn btn-primary" onclick="checkpass()" 
-                          data-hs-step-form-next-options='{
-                            "targetSelector": "#addUserStepBillingAddress"
-                          }'>
-                    Next <i class="tio-chevron-right"></i>
-                  </button>
-                </div>
-                <!-- End Footer -->
-              </div>
-              <!-- End Card -->
-
-              <div id="addUserStepBillingAddress" class="card card-lg border-secondary shadow-lg" style="display: none;">
-                <!-- Body -->
-                <div class="card-body">
-                  <!-- Form Group -->
-                  <div class="row form-group">
-                    <label for="screenLabel" class="col-sm-3 col-form-label input-label">Number of Screens</label>
-
-                    <div class="col-sm-9">
-                      <input type="number" class="form-control" name="screens" id="screenLabel" placeholder="Enter number of screens" aria-label="Human resources">
-                    </div>
-                  </div>
-
-                  <div class="row form-group">
-                    <label for="addressLine1Label" class="col-sm-3 col-form-label input-label">Address line 1</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="addressLine1" id="addressLine1Label" placeholder="Your address" aria-label="Your address">
-                    </div>
-                  </div>
-
-                  <div class="row form-group">
-                    <label for="addressLine2Label" class="col-sm-3 col-form-label input-label">Address line 2 <span class="input-label-secondary">(Optional)</span></label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="addressLine2" id="addressLine2Label" placeholder="Your address" aria-label="Your address">
-                    </div>
-                  </div>
-
-                  <div class="row form-group">
-                    <label for="locationLabel" class="col-sm-3 col-form-label input-label">Location</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control mb-3" name="city" id="cityLabel" placeholder="City" aria-label="City">
-                      <input type="text" class="form-control" name="state" id="stateLabel" placeholder="State" aria-label="State">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <label for="zipCodeLabel" class="col-sm-3 col-form-label input-label">Zip Code</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="js-masked-input form-control" name="zipCode" id="zipCodeLabel" placeholder="Your zip code">
-                    </div>
-                  </div>
-
-                </div>
-                <!-- End Body -->
-
-                <!-- Footer -->
-                <div class="card-footer d-flex align-items-center">
-                  <button type="button" class="btn btn-ghost-secondary"
-                      data-hs-step-form-prev-options='{
-                        "targetSelector": "#addUserStepProfile"
-                      }'>
-                    <i class="tio-chevron-left"></i> Previous step
-                  </button>
-
-                  <div class="ml-auto">
                     <button type="button" class="btn btn-primary" onclick="confirmpage(),checkpass()" 
                             data-hs-step-form-next-options='{
                               "targetSelector": "#addUserStepConfirmation"
                             }'>
                       Next <i class="tio-chevron-right"></i>
                     </button>
-                  </div>
                 </div>
                 <!-- End Footer -->
               </div>
+              <!-- End Card -->
 
               <div id="addUserStepConfirmation" class="card card-lg border-secondary shadow-lg" style="display: none;">
                 <!-- Profile Cover -->
@@ -349,38 +247,17 @@
                 <!-- Body -->
                 <div class="card-body">
                   <dl class="row">
-                    <dt class="col-sm-6 text-sm-right">Full name:</dt>
-                    <dd class="col-sm-6" id="fullName2"></dd>
+                    <dt class="col-sm-6 text-sm-right">Name:</dt>
+                    <dd class="col-sm-6" id="Name2"></dd>
 
                     <dt class="col-sm-6 text-sm-right">Email:</dt>
                     <dd class="col-sm-6" id="email2"></dd>
 
-                    <dt class="col-sm-6 text-sm-right">Phone:</dt>
-                    <dd class="col-sm-6" id="phone2"></dd>
+                    <!-- <dt class="col-sm-6 text-sm-right" id="noc">Number of Childs:</dt>
+                    <dd class="col-sm-6" id="ns"></dd> -->
 
-                    <dt class="col-sm-6 text-sm-right">Store Name:</dt>
-                    <dd class="col-sm-6" id="sn"></dd>
-
-                    <dt class="col-sm-6 text-sm-right">Company Name:</dt>
-                    <dd class="col-sm-6" id="cn"></dd>
-
-                    <dt class="col-sm-6 text-sm-right" id="nsdt">Number of Screens:</dt>
-                    <dd class="col-sm-6" id="ns"></dd>
-
-                    <dt class="col-sm-6 text-sm-right">City:</dt>
-                    <dd class="col-sm-6" id="city2"></dd>
-
-                    <dt class="col-sm-6 text-sm-right">State:</dt>
-                    <dd class="col-sm-6" id="state2"></dd>
-
-                    <dt class="col-sm-6 text-sm-right">Address line 1:</dt>
-                    <dd class="col-sm-6" id="addr1"></dd>
-
-                    <dt class="col-sm-6 text-sm-right">Address line 2:</dt>
-                    <dd class="col-sm-6" id="addr2"></dd>
-
-                    <dt class="col-sm-6 text-sm-right">Zip code:</dt>
-                    <dd class="col-sm-6" id="zc"></dd>
+                    <dt class="col-sm-6 text-sm-right" id="birthd">BirthDate:</dt>
+                    <dd class="col-sm-6" id="birth"></dd>
                   </dl>
                   <!-- End Row -->
                 </div>
@@ -390,7 +267,7 @@
                 <div class="card-footer d-sm-flex align-items-sm-center">
                   <button type="button" class="btn btn-ghost-secondary mb-2 mb-sm-0"
                       data-hs-step-form-prev-options='{
-                        "targetSelector": "#addUserStepBillingAddress"
+                        "targetSelector": "#addUserStepProfile"
                       }'>
                     <i class="tio-chevron-left"></i> Previous step
                   </button>
@@ -404,49 +281,6 @@
               </div>
             </div>
             <!-- End Content Step Form -->
-
-            <!-- Message Body -->
-            <div id="successMessageContent" style="display:none;">
-              <div class="text-center">
-                <img class="img-fluid mb-3" src="./assets/svg/illustrations/success.svg" alt="Image Description" style="max-width: 15rem;">
-
-                <div class="mb-4">
-                  <h2>Successful!</h2>
-                  <p>New user has been successfully created.</p>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-white mr-3" href="index.html">
-                    <i class="tio-chevron-left ml-1"></i> Back to dashboard
-                  </a>
-                  <a class="btn btn-primary" href="signup.html">
-                    <i class="tio-user-add mr-1"></i> Add new user
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- End Message Body -->
-            <!-- Message Body -->
-            <div id="failureMessageContent" style="display:none;">
-              <div class="text-center">
-                <img class="img-fluid mb-3" src="./assets/svg/illustrations/fail.svg" alt="Image Description" style="max-width: 15rem;">
-
-                <div class="mb-4">
-                  <h2>Failed!</h2>
-                  <p>Error in creating new user!!</p>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-white mr-3" href="index.html">
-                    <i class="tio-chevron-left ml-1"></i> Back to dashboard
-                  </a>
-                  <a class="btn btn-primary" href="signup.html">
-                    <i class="tio-user-add mr-1"></i> Add new user
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- End Message Body -->
           </div>
         </div>
         <!-- End Row -->
@@ -457,7 +291,7 @@
         <div class="footer">
           <div class="row justify-content-between align-items-center">
             <div class="col">
-              <p class="font-size-sm mb-0">&copy; NumberPredictor. <span class="d-none d-sm-inline-block">2021 TeqmoMedia.</span></p>
+              <p class="font-size-sm mb-0">&copy; Book Reader <span class="d-none d-sm-inline-block">2021.</span></p>
             </div>
             <div class="col-auto">
               <div class="d-flex justify-content-end">
@@ -499,7 +333,7 @@
             finish: function() {
               $("#addUserStepFormProgress").hide();
               $("#addUserStepFormContent").hide();
-              // $("#successMessageContent").show();
+              $("#successMessageContent").show();
             }
           }).init();
         });
