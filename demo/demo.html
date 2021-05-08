@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<title>demo</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<body>
+    <div>
+        <span>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </span>
+    </div>
+    <embed src="./64_Pratik_CCS_MasterPDF.pdf" type="application/pdf"   height="700px" width="800">
+    <div id="container" style="margin-top: 20px; width: fit-content; background-color: darkgray;">
+    </div>
+</body>
+</html>
+<script>
+    $('div').each(function() {
+        var $this = $(this);
+        $this.html($this.text().replace(/\b(\w+)\b/g, "<span>$1</span>"));
+    });
+
+    $('div span').hover(
+        function() { 
+            $(this).css('background-color','#ffff66'); 
+            console.log($(this).html());
+            getTheMeaningOfTheWord($(this).html())
+            // alert(getTheMeaningOfTheWord($(this).html()));
+        },
+        function() { 
+            $(this).css('background-color',''); 
+        }
+    );
+
+    let apiKey="451219b4-88ec-4d89-bad4-2dd0fce285d2";
+
+async function getTheMeaningOfTheWord(word){
+        let response = await fetch(`https://www.dictionaryapi.com/api/v3/references/learners/json/${word}?key=${apiKey}`);
+        const data = await response.json();
+        console.log(data);
+        if(!data[0].shortdef[0]){
+            var myDiv = document.createElement('div');
+            myDiv.innerText  = "Meaning Not Found";
+            console.log("Meaning Not Found");
+        }else{
+            let def=data[0].shortdef[0];
+            var myDiv = document.createElement('div');
+            myDiv.innerText  = def;
+            document.getElementById('container').appendChild(myDiv);
+            setTimeout(()=>{
+                if(myDiv){
+                    myDiv.parentNode.removeChild(myDiv);
+                }
+            },1500);
+        }
+    }
+
+</script>

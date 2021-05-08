@@ -80,4 +80,3 @@ function checkpass() {
         location.reload();
     }
 }
-
