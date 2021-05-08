@@ -1,136 +1,78 @@
-firebase.auth().onAuthStateChanged((user) => {
-    if(user){
-        showAllStores()
+firebase.auth().onAuthStateChanged(async (user) => {
+    if (user) {
+        const UID = user.uid;
+        const snapshot = await firebase.database().ref(`Admin/Users/${UID}/readingInfo`).once('value')
+        const data = snapshot.val()
+        updateStatistics(data)
+        updateChart(data)
         updateBasicInfo()
     }
 })
 
-async function showAllStores() {
-  let listAllStores = [];
-  let storeName, email, commission, phoneNo, sales;
+function updateStatistics(data) {
+    let storiesCount = 0,
+        totalPoints = 0,
+        totalPointsCurrentWeek = 0,
+        totalPointsPreviousWeek = 0;
 
-  const snapshot = await firebase.database().ref("Teqmo/Stores").once("value");
-  const data = snapshot.val()
-  console.log(data)
-  if (data) {
-    jQuery.each(data, function(storeUID, storeInfo) {
-      if (storeInfo) {
-        // console.log(storeUID, storeInfo)
-        storeName = storeInfo.details.storeName ? storeInfo.details.storeName : 'No Name';
-        email = storeInfo.details.email ? storeInfo.details.email : 'No Email';
-        phoneNo = storeInfo.details.phone ? storeInfo.details.phone : 'No Phone';
-        sales = storeInfo.payment.totalSales ? storeInfo.payment.totalSales : 'No Data';
-        commission = storeInfo.payment.totalCommission ? storeInfo.payment.totalCommission : 'No Data';
+    let currentWeekNum = getWeekNumber(new Date(getFormattedDate(new Date()))),
+        previousWeek = currentWeekNum - 1;
 
-        let nameHTML = `<a class="d-flex align-items-center" href="./store-details.html?storeUID=${storeUID}">
-                            <div class="ml-3">
-                              <span class="h5 text-hover-primary">${storeName}</span>
-                            </div>
-                        </a>`;
-        let linkToStore =`<a class="btn btn-sm btn-white" href="./store-details.html?storeUID=${storeUID}"  >
-                            More Details
-                          </a>`;
+    if (data.storiesAlreadyRead)
+        storiesCount = data.storiesAlreadyRead.split(',').length;
 
-        let tableRow = [nameHTML, email, phoneNo, sales, commission, linkToStore];
-        listAllStores.unshift(tableRow);
-      }
-    })
-  } else {
-    console.log("No store exists");
-  }
+    totalPoints = data.points.totalPoints
 
-  updateDataTable(listAllStores);
+    if (data.points.weeks[currentWeekNum])
+        totalPointsCurrentWeek = data.points.weeks[currentWeekNum].weeklyTotalPoints
+    if (data.points.weeks[previousWeek])
+        totalPointsPreviousWeek = data.points.weeks[previousWeek].weeklyTotalPoints
+
+    document.getElementById('totalStories').innerHTML = storiesCount;
+    document.getElementById('totalPoints').innerHTML = totalPoints;
+    document.getElementById('totalPointsCurrentWeek').innerHTML = totalPointsCurrentWeek;
+    document.getElementById('totalPointsPreviousWeek').innerHTML = totalPointsPreviousWeek;
 }
 
-// INITIALIZATION OF DATATABLES
-function updateDataTable(dataSet){
-  // console.log(dataSet);
-  document.getElementById('all-stores-count').innerHTML = dataSet.length
-  let datatable = $.HSCore.components.HSDatatables.init($('#datatable'), {
-    data: dataSet,
-    columns: [
-        { title: "Store Name" },
-        { title: "Email" },
-        { title: "Phone" },
-        { title: "Sales" },
-        { title: "Commission" },
-        { title: "View Store" }
-    ],
-    language: {
-      zeroRecords: '<div class="text-center p-4">' +
-          '<img class="mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description" style="width: 7rem;">' +
-          '<p class="mb-0">No data to show</p>' +
-          '</div>'
-    },
-    // Table Export
-    dom: 'Bfrtip',
-    buttons: [
-      {
-        extend: 'copy',
-        className: 'd-none'
-      },
-      {
-        extend: 'excel',
-        className: 'd-none'
-      },
-      {
-        extend: 'csv',
-        className: 'd-none'
-      },
-      {
-        extend: 'pdf',
-        className: 'd-none'
-      },
-      {
-        extend: 'print',
-        className: 'd-none'
-      },
-    ]
-  });
+/**
+ * Points Per Day of Current Week, from [Sun, Mon,... , Sat]
+ * Current WeekNumber is calculated from current date 
+ * @returns {Array} Points per day of week, 0th pos:Sunday, ..., 6th pos:Saturday
+ */
+async function getPointsPerDayOfWeek(data, weekNum = 0) {
+    let currentWeekNum = getWeekNumber(new Date(getFormattedDate(new Date())))
+    let targetWeekNum = currentWeekNum - weekNum
 
-  // Table Export Buttons
-  $('#export-copy').click(() => {
-    datatable.button('.buttons-copy').trigger()
-  });
-
-  $('#export-excel').click(() => {
-    datatable.button('.buttons-excel').trigger()
-  });
-
-  $('#export-csv').click(() => {
-    datatable.button('.buttons-csv').trigger()
-  });
-
-  $('#export-pdf').click(() => {
-    datatable.button('.buttons-pdf').trigger()
-  });
-
-  $('#export-print').click(() => {
-    datatable.button('.buttons-print').trigger()
-  });
-
-  // Initialise search on table
-  $('#datatableSearch').on('mouseup', function (e) {
-    var $input = $(this),
-      oldValue = $input.val();
-
-    if (oldValue == "") return;
-
-    setTimeout(function(){
-      var newValue = $input.val();
-
-      if (newValue == ""){
-        // Gotcha
-        datatable.search('').draw();
-      }
-    }, 1);
-  });
+    let points = [0, 0, 0, 0, 0, 0, 0]
+    if (data.points.weeks[targetWeekNum])
+        points = data.points.weeks[targetWeekNum].dailyPoints
+        
+    return points
 }
 
-$(document).on('ready', function () {
-  // INITIALIZATION OF SELECT2
-  // =======================================================
-  $('.js-select2-custom').each(function () {
-    var select2 = $.HSCore.components.HSSelect2.init($(this));
-  });
-});
+async function updateChart(data) {
+    var countThisWeek = await getPointsPerDayOfWeek(data, 0)
+    var countLastWeek = await getPointsPerDayOfWeek(data, 1)
+
+    var updatingChart = $.HSCore.components.HSChartJS.init($('#updatingData'));
+    updatingChart.data.datasets[0].data = countThisWeek
+    updatingChart.data.datasets[1].data = countLastWeek
+    updatingChart.update();
+
+    const totalThisWeek = countThisWeek.reduce((a, b) => a + b, 0)
+    const totalLastWeek = countLastWeek.reduce((a, b) => a + b, 0)
+    const increasePercentage = Math.ceil((totalThisWeek - totalLastWeek) * 100 / totalLastWeek)
+
+    const countTrend = document.getElementById("countTrend")
+    if (increasePercentage > 0) {
+        countTrend.classList.add("text-success");
+        countTrend.classList.remove("text-danger");
+        countTrend.innerHTML = `<i class="tio-trending-up"></i> ${increasePercentage}%`
+    } else {
+        countTrend.classList.remove("text-success");
+        countTrend.classList.add("text-danger");
+        countTrend.innerHTML = `<i class="tio-trending-down"></i> ${increasePercentage}%`
+    }
+}
+
+
