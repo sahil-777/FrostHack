@@ -83,8 +83,7 @@ function getShiftName(shiftNumber){
  * Eg. Top left profile icon details
  */
 async function updateBasicInfo(){
-    //const UID = firebase.auth().currentUser.uid;
-    const UID = "3RDxOHJFg3S2yDIH8XhlNRPVen43";
+    const UID = firebase.auth().currentUser.uid;
     var snapshot = await firebase.database().ref(`Admin/Users/${UID}/details`).once('value')
     var details = snapshot.val()
 
