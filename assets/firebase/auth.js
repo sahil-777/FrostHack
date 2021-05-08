@@ -52,6 +52,8 @@ function login(){
     // console.log(email, password)
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((user) => {
+      window.location = "../read-story.html" ;
+      console.log(user);
     })
     .catch((error) => {
         var errorCode = error.code;
