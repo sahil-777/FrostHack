@@ -24,7 +24,7 @@ firebase.initializeApp(firebaseConfig);
 
 // Only allow Admins to login
 const ADMIN_UID_LIST = ['5NRlQnIpAUPJO4F7PJphNniwejk1']
-const authPages = ['login', 'forgot-password']
+const authPages = ['login', 'forgot-password','signup']
 
 // Check if Authentcated User
 firebase.auth().onAuthStateChanged((user) => {
@@ -52,6 +52,8 @@ function login(){
     // console.log(email, password)
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((user) => {
+      window.location = "../read-story.html" ;
+      console.log(user);
     })
     .catch((error) => {
         var errorCode = error.code;
