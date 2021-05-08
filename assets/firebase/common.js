@@ -1,5 +1,4 @@
 const START_DATE = new Date('4/4/2021')
-const SCREEN_UNLOCK = 0
 
 /**
  * For formatting any date in MM/DD/YYYY
@@ -53,19 +52,8 @@ function getDateFromWeek(weekNum,startOrEnd){
         daysPassed+=6;
     
     result.setDate(result.getDate() + daysPassed);
-    // let month = (1 + result.getMonth()).toString().padStart(2, '0');
-    // let day = result.getDate().toString().padStart(2, '0');
-    // let year = result.getFullYear();
     return result.toString().substring(4,15)
 }
-
-function getShiftName(shiftNumber){
-    if(shiftNumber == "0") {return "Morning"}
-    if(shiftNumber == "1") {return "Afternoon"}
-    if(shiftNumber == "2") {return "Evening"}
-    return "No Info Available"
-}
-
 
 /**
  * @returns {string} Morning, Afternoon, Evening
@@ -86,7 +74,6 @@ async function updateBasicInfo(){
     const UID = firebase.auth().currentUser.uid;
     var snapshot = await firebase.database().ref(`Admin/Users/${UID}/details`).once('value')
     var details = snapshot.val()
-
     const userName = details.name ? details.name : 'No Owner Name'
     const userEmail = details.email ? details.email : 'No Valid Email'
 
