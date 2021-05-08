@@ -84,10 +84,10 @@ function getShiftName(shiftNumber){
  */
 async function updateBasicInfo(){
     const UID = firebase.auth().currentUser.uid;
-    var snapshot = await firebase.database().ref(`Teqmo/Stores/${UID}/details`).once('value')
+    var snapshot = await firebase.database().ref(`Admin/Users/${UID}/details`).once('value')
     var details = snapshot.val()
 
-    const userName = details.ownerName ? details.ownerName : 'No Owner Name'
+    const userName = details.name ? details.name : 'No Owner Name'
     const userEmail = details.email ? details.email : 'No Valid Email'
 
     var profileName = document.getElementById('profileName')

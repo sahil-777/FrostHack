@@ -1,4 +1,3 @@
-
 //updates confirmation page based on user inputs.
 function confirmpage() {
     // First Page

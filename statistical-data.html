@@ -111,7 +111,7 @@
               <!-- Dashboards -->
               <li class="nav-item">
                 <a class="js-nav-tooltip-link nav-link" href="./read-story.html" title="Dashboard" data-placement="left">
-                  <i class="tio-home-vs-1-outlined nav-icon"></i>
+                  <img class="avatar avatar-xss avatar-4by3 mr-2" src="./assets/svg/illustrations/reading.svg" alt="Image Description">
                   <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Read Story</span>
                 </a>
               </li>
@@ -175,7 +175,7 @@
               <div class="media">
                 <div class="media-body">
                   <h6 class="card-subtitle">Total stories you read</h6>
-                  <span class="card-title h3" id="totalStores">0</span>
+                  <span class="card-title h3" id="totalStories">0</span>
                 </div>
 
                 <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
@@ -192,7 +192,7 @@
               <div class="media">
                 <div class="media-body">
                   <h6 class="card-subtitle">Total Points</h6>
-                  <span class="card-title h3" id="totalPlays">0</span>
+                  <span class="card-title h3" id="totalPoints">0</span>
                 </div>
 
                 <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
@@ -209,7 +209,7 @@
               <div class="media">
                 <div class="media-body">
                   <h6 class="card-subtitle">Total Points : This Week</h6>
-                  <span class="card-title h3" id="totalSales">0</span>
+                  <span class="card-title h3" id="totalPointsCurrentWeek">0</span>
                 </div>
 
                 <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
@@ -226,7 +226,7 @@
               <div class="media">
                 <div class="media-body">
                   <h6 class="card-subtitle">Total Points : Last Week</h6>
-                  <span class="card-title h3" id="totalCommission">$ 0</span>
+                  <span class="card-title h3" id="totalPointsPreviousWeek">0</span>
                 </div>
 
                 <span class="icon icon-sm icon-soft-secondary icon-circle ml-3">
@@ -380,7 +380,7 @@
     
     <!-- Custom JS -->
     <Script src="./assets/firebase/common.js"></Script>
-    <Script src="./assets/firebase/read-story.js"></Script>
+    <Script src="./assets/firebase/statistical-data.js"></Script>
 
     <!-- JS Plugins Init. -->
     <script>

@@ -27,24 +27,24 @@ const ADMIN_UID_LIST = ['5NRlQnIpAUPJO4F7PJphNniwejk1']
 const authPages = ['login', 'forgot-password','signup']
 
 // Check if Authentcated User
-firebase.auth().onAuthStateChanged((user) => {
-    var currentPage = window.location.pathname.split('/')
-    var currentPage = currentPage[currentPage.length-1].split('.')[0]
+// firebase.auth().onAuthStateChanged((user) => {
+//     var currentPage = window.location.pathname.split('/')
+//     var currentPage = currentPage[currentPage.length-1].split('.')[0]
 
-    // Allow only if authenticated Admin is logged in
-    if (user && authPages.includes(currentPage)) {
-      const currentUserUID = user.uid;
-      if (ADMIN_UID_LIST.includes(currentUserUID)) {
-        window.location.href = '../read-story.html'
-      } else {
-        logout()
-      }      
-    }
-    else if(!user && !authPages.includes(currentPage)) {
-      // User is NOT signed in
-      window.location.href = './auth/login.html'
-    }
-});  
+//     // Allow only if authenticated Admin is logged in
+//     if (user && authPages.includes(currentPage)) {
+//       const currentUserUID = user.uid;
+//       if (ADMIN_UID_LIST.includes(currentUserUID)) {
+//         window.location.href = '../read-story.html'
+//       } else {
+//         logout()
+//       }      
+//     }
+//     else if(!user && !authPages.includes(currentPage)) {
+//       // User is NOT signed in
+//       window.location.href = './auth/login.html'
+//     }
+// });  
 
 function login(){
     const email = document.getElementById('email').value
