@@ -42,7 +42,6 @@ function updateStatistics(data) {
 async function getPointsPerDayOfWeek(data, weekNum = 0) {
     let currentWeekNum = getWeekNumber(new Date(getFormattedDate(new Date())))
     let targetWeekNum = currentWeekNum - weekNum
-
     let points = [0, 0, 0, 0, 0, 0, 0]
     if (data.points.weeks[targetWeekNum])
         points = data.points.weeks[targetWeekNum].dailyPoints
