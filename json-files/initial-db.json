@@ -3,7 +3,7 @@
     "Parents" : {
       "3RDxOHJFg3S2yDIH8XhlNRPVen43" : {
         "child1" : {
-          "booksAlreadyRead" : "1,3,2,6",
+          "booksAlreadyRead" : "",
           "details" : {
             "birthdate" : "04-06-2008",
             "name" : "George"
@@ -38,6 +38,7 @@
         },
         "details" : {
           "birthdate" : "08-10-1990",
+          "email" : "email-entered-during-signup",
           "name" : "parent1-name"
         }
       },
@@ -78,6 +79,7 @@
         },
         "details" : {
           "birthdate" : "08-10-1990",
+          "email" : "email-entered-during-signup",
           "name" : "parent2-name"
         }
       }
