@@ -27,11 +27,11 @@ FrostHack - Open Hackathon organized by student community with the goal of solvi
 - In case,a unknown word encounters he/she can search the word for meaning in navbar search box.
 - After every refresh The story will change in case he/she wants another story.
 - If child reads two story a day he will alloted 12 points and 5 points for one story.
-- 
+
 #### Statistical-data Page :- 
 - In this page,data will be shown comparing previous week and current weeks performance.
 - According to ones points scored data will be shown in graphical format.
-- 
+
 #### SignUp Page :-
 For SignUp we use Firebase Authentication
 - Email address to be associated with the user’s profile and serve as login name.
