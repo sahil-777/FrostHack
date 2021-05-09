@@ -26,12 +26,16 @@ function loadTimer() {
 
 function completedReading() {
     let val = document.getElementById('timer').innerText;
-    if (val != 'Done?')
-        return;
-
+    if (val != 'Done?'){
+        Swal.fire({
+            icon: 'info',
+            text: 'Please, read story completely'
+        })
+    }
+    else{
     const UID = firebase.auth().currentUser.uid;
     updateDailyPoints(UID);
-
+    }
 }
 
 function updateDailyPoints(UID) {
