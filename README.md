@@ -9,12 +9,19 @@
 # FrostHack
 FrostHack - Open Hackathon organized by student community with the goal of solving societal problems by collective collaboration among students using tech.
 
+## 🎞️ Video Link :- 
+https://screenrec.com/share/Cv9NgxhDqi
 ## 📝 Instruction :- 
 1. Clone the repository git clone https://github.com/sahil-777/FrostHack.git .
-1. Connect To Firebase.
-1. Create Project in Firebase named FrostHack and in Realtime database add json.file provided in code.
-1. Add stories file in Firebase Storage(check assets/stories files folder).
-1. Run read-story.html file.
+2. Connect To Firebase.
+3. Create Project in Firebase named FrostHack and in Realtime database add json.file provided in code.
+4. Add stories file in Firebase Storage(check assets/stories files folder).
+5. Run read-story.html file.
+<b>
+Note: Please use following credentilas for testing, we have flooded this with data <br>
+    email:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptest@readbook.com  <br>
+    password:&nbsp&nbsp&nbsptest@password
+</b><br>
 
 ## ✍  Dependecies
 - [Dictionary Api](www.dictionaryapi.com) - Get apiKey from here by registering yourself and add your own apiKey.
