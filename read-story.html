@@ -15,11 +15,16 @@
     <link rel="stylesheet" href="./assets/vendor/icon-set/style.css">
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="./assets/css/theme.min.css">
+    <!--CSS Loader-->
+    <link rel="stylesheet" href="./assets/css/loader.css">
+
 
     <!-- Firebase Libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-storage.js"></script>
+
     <!--Firebase Config-->
     <Script src="./assets/firebase/auth.js"></Script>
   </head>
@@ -155,7 +160,7 @@
 
     <main id="content" role="main" class="main">
       <!-- Page Header Content -->
-      <div class="bg-dark">
+    <!--  <div class="bg-dark">
         <div class="content container-fluid">
           <div class="page-header page-header-light">
             <h1 class="page-header-title" id="welcomeName">Welcome!</h1>
@@ -163,14 +168,24 @@
           </div>
         </div>
       </div>
+    -->
       <!-- Page Header End -->
 
       <!-- Content -->
       <div class="content container-fluid">
- 
+      <div class="card mb-3 mb-lg-5 border-secondary shadow-lg">
+      <div class="card-body">
+          <div class="card-body">
+              <iframe id="load-story" src="./assets/svg/illustrations/bean-eater.svg" style="height: 800px; width:100%;"></iframe>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button id="timer" type="submit" onclick="completedReading()" class="btn btn-primary">Timer</button>
+          </div>
+        </div>
       </div>
+      </div>
+       
       <!-- End Content -->
-
       <!-- Footer -->
         <div class="footer">
           <div class="row justify-content-between align-items-center">
@@ -197,6 +212,9 @@
       <!-- End Footer -->
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+
+    <!--Sweet Alert Library-->
+    <script src="./assets/vendor/sweetalert2@10.js"></script>
 
     <!-- JS Implementing Plugins -->
     <script src="./assets/js/vendor.min.js"></script>
