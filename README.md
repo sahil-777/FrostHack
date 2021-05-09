@@ -21,30 +21,34 @@ FrostHack - Open Hackathon organized by student community with the goal of solvi
 - [Firebase](https://firebase.google.com/) - You need to have Firebase account and create a project named FrostHack.
 
 ## ⚙ Functionality:
-##### SignUp Page :-
-For SignUp we use Firebase Authentication
-- Email address to be associated with the user’s profile and serve as login name.
-- Password which will be used to log into the site.
-- Confirmation of password.
-- Once user has finished providing required Manual Signup input, they must click ‘Sign Up’ to trigger registration validation and completion of the registration.
-##### Login Page :- 
-For Login we use Firebase Authentication
-- Email address to be associated with the user’s profile and serve as login email.
-- Password which was used while registering account.
-##### Read-Story Page :- 
+#### Read-Story Page :- 
 - Stories will be displayed with a timer of 5 min.
 - After child finishes reading there will be a button named done after clicking that 5 points will be added to his data and page will reload with new story.
 - In case,a unknown word encounters he/she can search the word for meaning in navbar search box.
 - After every refresh The story will change in case he/she wants another story.
 - If child reads two story a day he will alloted 12 points and 5 points for one story.
-##### Statistical-data Page :- 
+
+#### Statistical-data Page :- 
 - In this page,data will be shown comparing previous week and current weeks performance.
 - According to ones points scored data will be shown in graphical format.
 
+#### SignUp Page :-
+For SignUp we use Firebase Authentication
+- Email address to be associated with the user’s profile and serve as login name.
+- Password which will be used to log into the site.
+- Confirmation of password.
+- Once user has finished providing required Manual Signup input, they must click ‘Sign Up’ to trigger registration validation and completion of the registration.
+
+#### Login Page :- 
+For Login we use Firebase Authentication
+- Email address to be associated with the user’s profile and serve as login email.
+- Password which was used while registering account.
+
+
 ## 🙏Credit :- 
-Thanks to [Dictionary Api](www.dictionaryapi.com) - For Api Key.
-Thanks to [Swal](https://sweetalert.js.org/docs/) - For custom modal.
-Thanks to [Template](https://htmlstream.com/front-dashboard/) - HTML Template
+1. Thanks to [Dictionary Api](www.dictionaryapi.com) - For Api Key for finding meanings of word.
+1. Thanks to [Swal](https://sweetalert.js.org/docs/) - For custom modal showing success/error messages.
+1. Thanks to [Template](https://htmlstream.com/front-dashboard/) - HTML Template.
      
 
 ## ⛏️✍  Built Using <a name = "tech_stack"></a>
