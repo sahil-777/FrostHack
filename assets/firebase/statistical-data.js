@@ -52,10 +52,9 @@ async function getPointsPerDayOfWeek(data, weekNum = 0) {
 async function updateChart(data) {
     var countThisWeek = await getPointsPerDayOfWeek(data, 0)
     var countLastWeek = await getPointsPerDayOfWeek(data, 1)
-
     var updatingChart = $.HSCore.components.HSChartJS.init($('#updatingData'));
-    updatingChart.data.datasets[0].data = countThisWeek
-    updatingChart.data.datasets[1].data = countLastWeek
+    updatingChart.data.datasets[0].data = countLastWeek
+    updatingChart.data.datasets[1].data = countThisWeek
     updatingChart.update();
 
     const totalThisWeek = countThisWeek.reduce((a, b) => a + b, 0)
