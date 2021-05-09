@@ -13,7 +13,7 @@ FrostHack - Open Hackathon organized by student community with the goal of solvi
 1. Clone the repository git clone https://github.com/sahil-777/FrostHack.git .
 1. Connect To Firebase.
 1. Create Project in Firebase named FrostHack and in Realtime database add json.file provided in code.
-1. Add stories file in Firebase Storage(check stories files folder).
+1. Add stories file in Firebase Storage(check assets/stories files folder).
 1. Run read-story.html file.
 
 ## ✍  Dependecies
