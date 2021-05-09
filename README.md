@@ -22,15 +22,17 @@ FrostHack - Open Hackathon organized by student community with the goal of solvi
 
 ## ⚙ Functionality:
 #### Read-Story Page :- 
+Here stories from Firebase Storage is fetched and displayed.
 - Stories will be displayed with a timer of 5 min.
 - After child finishes reading there will be a button named done after clicking that 5 points will be added to his data and page will reload with new story.
 - In case,a unknown word encounters he/she can search the word for meaning in navbar search box.
 - After every refresh The story will change in case he/she wants another story.
-- If child reads two story a day he will alloted 12 points and 5 points for one story.
+- Child can read stories how many they want and will allot 5 points for one story.
 
 #### Statistical-data Page :- 
+Here we Use Firebase Realtime Database data and calculated points using Javascript.
 - In this page,data will be shown comparing previous week and current weeks performance.
-- According to ones points scored data will be shown in graphical format.
+- According to ones points scored data will be shown in Statistical format.
 
 #### SignUp Page :-
 For SignUp we use Firebase Authentication
