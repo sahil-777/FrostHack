@@ -26,16 +26,12 @@ function loadTimer() {
 
 function completedReading() {
     let val = document.getElementById('timer').innerText;
-    if (val != 'Done?'){
-        Swal.fire({
-            icon: 'info',
-            text: 'Please, read story completely'
-        })
-    }
-    else{
+    if (val != 'Done?')
+        return;
+
     const UID = firebase.auth().currentUser.uid;
     updateDailyPoints(UID);
-    }
+
 }
 
 function updateDailyPoints(UID) {
@@ -151,7 +147,7 @@ async function getTheMeaningOfTheWord(word) {
 
         document.getElementById('word-meaning').innerHTML = def
     }
-
+    
     setTimeout(() => {
         document.getElementById('word-meaning').innerHTML = '';
     }, 10000)
