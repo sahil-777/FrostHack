@@ -46,18 +46,42 @@ For Login we use Firebase Authentication
 - Email address to be associated with the user’s profile and serve as login email.
 - Password which was used while registering account.
 
-
 ## 🙏Credit :- 
 1. Thanks to [Dictionary Api](www.dictionaryapi.com) - For Api Key for finding meanings of word.
 1. Thanks to [Swal](https://sweetalert.js.org/docs/) - For custom modal showing success/error messages.
 1. Thanks to [Template](https://htmlstream.com/front-dashboard/) - HTML Template.
      
-
 ## ⛏️✍  Built Using <a name = "tech_stack"></a>
 - [FIREBASE](https://firebase.google.com/) - NoSQL Database
 - [HTML](https://html.spec.whatwg.org/) -  HTML is the standard markup language for documents designed to be displayed in a web browser.
 - [JAVASCRIPT](https://javascript.info/)-JavaScript is the programming language/scripting of the Web.
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.
+
+## Screenshots : 
+
+#### SignUp(1) Page :
+<img src="screenshots\SignUp.png" alt="SignUp 1 Page">
+
+#### SignUp(2) Page :
+<img src="screenshots\SignUp (1).png" alt="SignUp 2 Page">
+
+#### Login Page :
+<img src="screenshots\Login.png" alt=" Login Page">
+
+#### Read-Story Page :
+<img src="screenshots\Story.png" alt="Read-Story Page">
+
+#### Statistical-Data Page :
+<img src="screenshots\Statistical Data.png" alt="Statistical-Data Page">
+
+#### Firebase Realtime-Database :
+<img src="screenshots\Realtime_Database.png" alt="Firebase Realtime-Database ">
+
+#### Firebase Storage :
+<img src="screenshots\Firebase_Storage.png" alt="Firebase Storage">
+
+#### Firebase Authentication :
+<img src="screenshots\Authentication.png" alt=" Firebase Authentication">
 
 ## 😎 Contributors :
 ## - [Sahil Velhal](https://github.com/sahil-777)
