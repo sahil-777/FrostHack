@@ -150,7 +150,7 @@ async function getTheMeaningOfTheWord(word) {
 
     setTimeout(() => {
         document.getElementById('word-meaning').innerHTML = '';
-    }, 5000)
+    }, 10000)
 }
 
 function errorMessage(msg = '') {
