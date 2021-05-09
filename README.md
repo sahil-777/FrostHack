@@ -1,6 +1,6 @@
 <p align="center">
     <img src="assets\img\book-logo.png" alt=" Project Logo" height="160px" width="320px" >
-    <h1 align="center"><b>FrostHack</b></h1>
+    <h1 align="center"><b>Read Story</b></h1>
 </p>
 <p align="center">A website for creating a reading habit for students.
     <br> 
