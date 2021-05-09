@@ -21,6 +21,7 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });  
 
+// function for login and matching credentials.
 function login(){
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
@@ -47,6 +48,7 @@ function login(){
     button.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
 }
 
+// logout function
 function logout(){
   firebase.auth().signOut().then(() => {
     window.location.href='./auth/login.html';
