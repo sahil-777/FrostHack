@@ -1,5 +1,6 @@
 const TOTAL_STORIES_AVAILABLE = 17;
 const POINTS_PER_READING = 5;
+const API_KEY = "451219b4-88ec-4d89-bad4-2dd0fce285d2";
 
 firebase.auth().onAuthStateChanged(async (user) => {
     if (user) {
@@ -35,7 +36,6 @@ function completedReading() {
 
 function updateDailyPoints(UID) {
     let weekNum = getWeekNumber(new Date(getFormattedDate(new Date())));
-    alert(weekNum)
     let d = new Date()
     let position = d.getDay();
     firebase.database().ref(`Admin/Users/${UID}/readingInfo/points/weeks/${weekNum}`).get().then(function (snapshot) {
@@ -52,16 +52,17 @@ function updateDailyPoints(UID) {
 }
 
 function updateTotalValues(UID, weekNum) {
-    incrementTotalValues(`Admin/Users/${UID}/readingInfo/points/weeks/${weekNum}/weeklyTotalPoints`);
-    incrementTotalValues(`Admin/Users/${UID}/readingInfo/points/totalPoints`);
+    incrementTotalValues(`Admin/Users/${UID}/readingInfo/points/weeks/${weekNum}/weeklyTotalPoints`, POINTS_PER_READING);
+    incrementTotalValues(`Admin/Users/${UID}/readingInfo/points/totalPoints`, POINTS_PER_READING);
+    incrementTotalValues(`Admin/Users/${UID}/readingInfo/storiesAlreadyRead`, 1);
 }
 
-function incrementTotalValues(path) {
+function incrementTotalValues(path, incrementValue) {
     firebase.database().ref(`${path}`).transaction((value) => {
         if (value === null) {
             return 0;
         } else if (typeof value === 'number') {
-            return value + POINTS_PER_READING;
+            return value + incrementValue;
         } else {
             console.log('The count has a non-numeric value: ');
         }
@@ -73,7 +74,7 @@ function incrementTotalValues(path) {
         } else {
             console.log('Total Values Incremented Successfully!');
             path = path.split('/')
-            if (path[path.length - 1] == 'totalPoints') {
+            if (path[path.length - 1] == 'storiesAlreadyRead') {
                 Swal.fire({
                         icon: 'success',
                         title: 'Hurray!',
@@ -123,6 +124,35 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
+function searchWord() {
+    let word = document.getElementById('searchWord').value;
+    if (!word)
+        return;
+
+    getTheMeaningOfTheWord(word);
+
+}
+
+async function getTheMeaningOfTheWord(word) {
+    let response = await fetch(`https://www.dictionaryapi.com/api/v3/references/learners/json/${word}?key=${API_KEY}`);
+    const data = await response.json();
+    if (!data[0].shortdef) {
+        document.getElementById('word-meaning').innerHTML = 'Meaning not found'
+    } else {
+        let def = data[0].shortdef[0];
+        if (!def)
+            document.getElementById('word-meaning').innerHTML = 'Meaning not found'
+        else if (def && def.length > 120)
+            document.getElementById('word-meaning').innerHTML = 'Meaning not found'
+
+        document.getElementById('word-meaning').innerHTML = def
+    }
+
+    setTimeout(() => {
+        document.getElementById('word-meaning').innerHTML = '';
+    }, 5000)
+}
+
 function errorMessage(msg = '') {
     msg = (msg == '') ? 'Something went wrong, please try again' : msg
     Swal.fire({
@@ -134,3 +164,4 @@ function errorMessage(msg = '') {
             location.reload();
         })
 }
+

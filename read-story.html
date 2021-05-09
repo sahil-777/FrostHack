@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="./assets/vendor/icon-set/style.css">
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="./assets/css/theme.min.css">
-    <!--CSS Loader-->
-    <link rel="stylesheet" href="./assets/css/loader.css">
 
 
     <!-- Firebase Libraries -->
@@ -42,10 +40,29 @@
             <i class="tio-last-page navbar-vertical-aside-toggle-full-align" data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-toggle="tooltip" data-placement="right" title="Expand"></i>
           </button>
           <!-- End Navbar Vertical Toggle -->
+              <form>
+                <div class="input-group input-group-merge input-group-flush">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="tio-search"></i>
+                    </div>
+                  </div>
+                  <input id="searchWord" type="search" class="form-control" placeholder="Search word" aria-label="Search word">
+                </div>
+              </form>
+              &nbsp&nbsp
+              <div class="d-flex justify-content-end">
+                <button type="submit" onclick="searchWord()" class="btn btn-primary">Search</button>
+              </div>
+              &nbsp&nbsp&nbsp&nbsp
+              <div class="d-flex justify-content-end">
+                <span class="card-text" id="word-meaning"></span>
+              </div>
         </div>
 
         <!-- Secondary Content -->
         <div class="navbar-nav-wrap-content-right">
+          
           <!-- Navbar -->
           <ul class="navbar-nav align-items-center flex-row">
 

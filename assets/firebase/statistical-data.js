@@ -19,7 +19,7 @@ function updateStatistics(data) {
         previousWeek = currentWeekNum - 1;
 
     if (data.storiesAlreadyRead)
-        storiesCount = data.storiesAlreadyRead.split(',').length;
+        storiesCount = data.storiesAlreadyRead;
 
     totalPoints = data.points.totalPoints
 

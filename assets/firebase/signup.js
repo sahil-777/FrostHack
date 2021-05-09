@@ -22,7 +22,7 @@ function signUp() {
                     birthdate: document.getElementById('birthdate').value,
                 },
                 readingInfo: {
-                    storiesAlreadyRead: '',
+                    storiesAlreadyRead: 0,
                     points: {
                         totalPoints: 0,
                         weeks: {
