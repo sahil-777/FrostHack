@@ -85,8 +85,11 @@ For Login we use Firebase Authentication
 #### Firebase Storage :
 <img src="screenshots\Firebase_Storage.png" alt="Firebase Storage">
 
+<!--
 #### Firebase Authentication :
 <img src="screenshots\Authentication.png" alt=" Firebase Authentication">
+-->
+<br>
 
 ## 😎 Contributors :
 ## - [Sahil Velhal](https://github.com/sahil-777)
